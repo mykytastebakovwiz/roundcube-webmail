@@ -1,0 +1,48 @@
+vendor
+logs
+SQL
+temp
+program
+bin
+installer.ex
+
+plugins
+// plugins/ad
+// plugins/additional_message_headers
+// plugins/archive
+// plugins/attachment_reminder
+// plugins/autologon
+// plugins/autologout
+// plugins/database_attachments
+// plugins/debug_logger
+// plugins/emoticons
+// plugins/enigma
+// plugins/example_addressbook
+// plugins/filesystem_attachments
+// plugins/help
+// plugins/hide_blockquote
+// plugins/http_authentication
+// plugins/identicon
+// plugins/identity_select
+// plugins/jqueryui
+// plugins/krb_authentication
+// plugins/managesieve
+// plugins/markasjunk
+// plugins/new_user_dialog
+// plugins/new_user_identity
+// plugins/newmail_notifier
+// plugins/password
+// plugins/reconnect
+// plugins/redundant_attachments
+// plugins/show_additional_headers
+// plugins/squirrelmail_usercopy
+// plugins/subscriptions_option
+// plugins/userinfo
+// plugins/vcard_attachments
+// plugins/virtuser_file
+// plugins/virtuser_query
+// plugins/zipdownload
+// plugins/xframework
+// plugins/xskin
+
+public_html
