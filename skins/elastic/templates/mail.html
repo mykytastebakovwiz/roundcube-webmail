@@ -13,7 +13,7 @@
 	
 	<h2 id="aria-label-folderlist" class="voice"><roundcube:label name="arialabelfolderlist" /></h2>
 	<div id="folderlist-content" class="scroller">
-		<div style="display: flex; align-items: center; justify-content: center; padding: 10px;">
+		<div style="display: flex; align-items: center; justify-content: center; padding: 7px; border-bottom: 1px solid #4d6066;">
 			<span class="header-title username"><roundcube:object name="username" /></span>
 		</div>
 		<roundcube:object name="mailboxlist" id="mailboxlist" class="treelist listing folderlist" folder_filter="mail" unreadwrap="%s" />
@@ -30,21 +30,22 @@
 
 <!-- messages list -->
 <div id="layout-list" class="listbox selected">
-	<div id="messagelist-header" class="header">
-		<a class="button icon task-menu-button" href="#menu"><span class="inner"><roundcube:label name="menu" /></span></a>
-		<a class="button icon back-sidebar-button folders" href="#sidebar"><span class="inner"><roundcube:label name="mailboxlist" /></span></a>
-		<span class="header-title"></span>
-		<div class="toolbar menu" role="toolbar">
-			<a href="#select" class="select disabled" data-popup="listselect-menu" data-toggle-button="list-toggle-button" title="<roundcube:label name="select" />"><span class="inner"><roundcube:label name="select" /></span></a>
-			<roundcube:if condition="env:threads" />
-				<a href="#threads" class="threads disabled" data-popup="threadselect-menu" title="<roundcube:label name="threads" />"><span class="inner"><roundcube:label name="threads" /></span></a>
-			<roundcube:endif />
-			<roundcube:object name="listmenulink" class="options active" label="options" innerclass="inner" />
-			<roundcube:container name="listcontrols" id="listcontrols" />
-		</div>
-		<roundcube:button command="checkmail" type="link" class="button icon toolbar-button refresh"
-			label="refresh" title="checkmail" innerclass="inner" />
-		<a class="button icon toolbar-menu-button" href="#list-menu"><span class="inner"><roundcube:label name="menu" /></span></a>
+	<div 
+		style="font-size: 1rem;
+		font-weight: 700;
+		line-height: 58px;
+		height: 58px;
+		min-height: 58px;
+		padding: 0 .25em;
+		margin: 0;
+		position: relative;
+		overflow: hidden;
+		white-space: nowrap;
+		display: flex;
+		justify-content: center;
+		background-color: #0075c8 !important;"
+	>
+		
 	</div>
 	<roundcube:add_label name="showunread" />
 	<roundcube:object name="searchform" id="mailsearchform" wrapper="searchbar menu"
@@ -102,7 +103,18 @@
 			<button type="button" class="btn btn-primary icon search" onclick="return rcmail.command('search')"><roundcube:label name="search" /></button>
 		</div>
 	</div>
+	
 	<div id="messagelist-content" class="scroller" tabindex="-1">
+		<div class="toolbar menu" role="toolbar" style="display: flex; align-items: center;	justify-content: center; border-bottom: 1px solid #4d6066; gap: 20px;">
+			<a href="#select" class="select disabled" data-popup="listselect-menu" data-toggle-button="list-toggle-button" title="<roundcube:label name="select" />"><span class="inner"><roundcube:label name="select" /></span></a>
+			<roundcube:if condition="env:threads" />
+				<a href="#threads" class="threads disabled" data-popup="threadselect-menu" title="<roundcube:label name="threads" />"><span class="inner"><roundcube:label name="threads" /></span></a>
+			<roundcube:endif />
+			<roundcube:object name="listmenulink" class="options active" label="options" innerclass="inner" />
+			<roundcube:container name="listcontrols" id="listcontrols" />
+			<roundcube:button command="checkmail" type="link" class="button icon toolbar-button refresh"
+				label="refresh" title="checkmail" innerclass="inner" />
+		</div>
 		<h2 id="aria-label-messagelist" class="voice"><roundcube:label name="arialabelmessagelist" /></h2>
 		<roundcube:object name="messages" id="messagelist" class="listing messagelist sortheader fixedheader"
 			aria-labelledby="aria-label-messagelist" data-list="message_list" data-label-msg="listempty"
