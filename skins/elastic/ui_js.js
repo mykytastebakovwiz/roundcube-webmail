@@ -521,132 +521,132 @@ function rcube_elastic_ui()
     function init()
     {
         // Additional functionality on list widgets
-        $('[data-list]').filter('ul,table').each(function() {
-            var table = $(this),
-                list = table.data('list');
+        // $('[data-list]').filter('ul,table').each(function() {
+        //     var table = $(this),
+        //         list = table.data('list');
 
-            if (rcmail[list] && rcmail[list].multiselect) {
-                var repl, button,
-                    parent = table.parents('layout-sidebar,#layout-list,#layout-content').last(),
-                    header = parent.find('.header'),
-                    toolbar = header.find('ul');
+        //     if (rcmail[list] && rcmail[list].multiselect) {
+        //         var repl, button,
+        //             parent = table.parents('layout-sidebar,#layout-list,#layout-content').last(),
+        //             header = parent.find('.header'),
+        //             toolbar = header.find('ul');
 
-                if (!toolbar.length) {
-                    toolbar = header;
-                }
-                else if (button = toolbar.find('a.select').data('toggle-button')) {
-                    button = $('#' + button);
-                }
+        //         if (!toolbar.length) {
+        //             toolbar = header;
+        //         }
+        //         else if (button = toolbar.find('a.select').data('toggle-button')) {
+        //             button = $('#' + button);
+        //         }
 
-                // Enable checkbox selection on list widgets
-                rcmail[list].enable_checkbox_selection();
+        //         // Enable checkbox selection on list widgets
+        //         rcmail[list].enable_checkbox_selection();
 
-                if (get_pref('list-selection') === true) {
-                    table.addClass('withselection');
-                }
+        //         if (get_pref('list-selection') === true) {
+        //             table.addClass('withselection');
+        //         }
 
-                // Add Select button to the list navigation bar
-                if (!button) {
-                    button = $('<a>').attr({'class': 'button selection disabled', role: 'button', title: rcmail.gettext('select')})
-                        .on('click', function() { UI.toggle_list_selection(this, table.attr('id')); })
-                        .append($('<span class="inner">').text(rcmail.gettext('select')));
+        //         // Add Select button to the list navigation bar
+        //         if (!button) {
+        //             button = $('<a>').attr({'class': 'button selection disabled', role: 'button', title: rcmail.gettext('select')})
+        //                 .on('click', function() { UI.toggle_list_selection(this, table.attr('id')); })
+        //                 .append($('<span class="inner">').text(rcmail.gettext('select')));
 
-                    if (toolbar.is('.menu')) {
-                        button.prependTo(toolbar).wrap('<li role="menuitem">');
+        //             if (toolbar.is('.menu')) {
+        //                 button.prependTo(toolbar).wrap('<li role="menuitem">');
 
-                        // Add a button to the content toolbar menu too
-                        if (layout.content) {
-                            var button2 = create_cloned_button(button, true, 'hidden-big hidden-large');
-                            $('<li role="menuitem">').append(button2).appendTo('#toolbar-menu');
-                            button = button.add(button2);
-                        }
-                    }
-                    else {
-                        if (repl = table.data('list-select-replace')) {
-                            $(repl).replaceWith(button);
-                        }
-                        else {
-                            button.appendTo(toolbar).addClass('icon');
-                            if (!parent.is('#layout-sidebar')) {
-                                button.addClass('toolbar-button');
-                            }
-                        }
-                    }
-                }
+        //                 // Add a button to the content toolbar menu too
+        //                 if (layout.content) {
+        //                     var button2 = create_cloned_button(button, true, 'hidden-big hidden-large');
+        //                     $('<li role="menuitem">').append(button2).appendTo('#toolbar-menu');
+        //                     button = button.add(button2);
+        //                 }
+        //             }
+        //             else {
+        //                 if (repl = table.data('list-select-replace')) {
+        //                     $(repl).replaceWith(button);
+        //                 }
+        //                 else {
+        //                     button.appendTo(toolbar).addClass('icon');
+        //                     if (!parent.is('#layout-sidebar')) {
+        //                         button.addClass('toolbar-button');
+        //                     }
+        //                 }
+        //             }
+        //         }
 
-                // Update Select button state on list update
-                rcmail.addEventListener('listupdate', function(prop) {
-                    if (prop.list && prop.list == rcmail[list]) {
-                        if (prop.rowcount) {
-                            button.addClass('active').removeClass('disabled').attr('tabindex', 0);
-                        }
-                        else {
-                            button.removeClass('active').addClass('disabled').attr('tabindex', -1);
-                        }
-                    }
-                });
-            }
+        //         // Update Select button state on list update
+        //         rcmail.addEventListener('listupdate', function(prop) {
+        //             if (prop.list && prop.list == rcmail[list]) {
+        //                 if (prop.rowcount) {
+        //                     button.addClass('active').removeClass('disabled').attr('tabindex', 0);
+        //                 }
+        //                 else {
+        //                     button.removeClass('active').addClass('disabled').attr('tabindex', -1);
+        //                 }
+        //             }
+        //         });
+        //     }
 
-            // https://github.com/roundcube/elastic/issues/45
-            // Draggable blocks scrolling on touch devices, we'll disable it there
-            if (touch && rcmail[list]) {
-                if (typeof rcmail[list].draggable == 'function') {
-                    rcmail[list].draggable('destroy');
-                }
-                else if (typeof rcmail[list].draggable == 'boolean') {
-                    rcmail[list].draggable = false;
-                }
+        //     // https://github.com/roundcube/elastic/issues/45
+        //     // Draggable blocks scrolling on touch devices, we'll disable it there
+        //     if (touch && rcmail[list]) {
+        //         if (typeof rcmail[list].draggable == 'function') {
+        //             rcmail[list].draggable('destroy');
+        //         }
+        //         else if (typeof rcmail[list].draggable == 'boolean') {
+        //             rcmail[list].draggable = false;
+        //         }
 
-                // Also disable double-click to prevent from opening items
-                // in a new page, and prevent from zoom issues (#7732)
-                rcmail[list].dblclick_time = 0;
-            }
-        });
+        //         // Also disable double-click to prevent from opening items
+        //         // in a new page, and prevent from zoom issues (#7732)
+        //         rcmail[list].dblclick_time = 0;
+        //     }
+        // });
 
         // Display "List is empty..." on the list
-        if (window.MutationObserver) {
-            $('[data-label-msg]').filter('ul,table').each(function() {
-                var info = $('<div class="listing-info hidden">').insertAfter(this),
-                    table = $(this),
-                    fn = function() {
-                        var ext, command,
-                            msg = table.data('label-msg'),
-                            list = table.is('ul') ? table : table.children('tbody');
+        // if (window.MutationObserver) {
+        //     $('[data-label-msg]').filter('ul,table').each(function() {
+        //         var info = $('<div class="listing-info hidden">').insertAfter(this),
+        //             table = $(this),
+        //             fn = function() {
+        //                 var ext, command,
+        //                     msg = table.data('label-msg'),
+        //                     list = table.is('ul') ? table : table.children('tbody');
 
-                        if (!rcmail.env.search_request && !rcmail.env.qsearch
-                            && msg && !list.children(':visible').length
-                        ) {
-                            ext = table.data('label-ext');
-                            command = table.data('create-command');
+        //                 if (!rcmail.env.search_request && !rcmail.env.qsearch
+        //                     && msg && !list.children(':visible').length
+        //                 ) {
+        //                     ext = table.data('label-ext');
+        //                     command = table.data('create-command');
 
-                            if (ext && (!command || rcmail.commands[command])) {
-                                msg += ' ' + ext;
-                            }
+        //                     if (ext && (!command || rcmail.commands[command])) {
+        //                         msg += ' ' + ext;
+        //                     }
 
-                            info.text(msg).removeClass('hidden');
-                            return;
-                        }
+        //                     info.text(msg).removeClass('hidden');
+        //                     return;
+        //                 }
 
-                        info.addClass('hidden');
-                    },
-                    callback = function() {
-                        // wait until the UI stops loading and the list is visible
-                        if (rcmail.busy || !table.is(':visible')) {
-                            return setTimeout(callback, 250);
-                        }
+        //                 info.addClass('hidden');
+        //             },
+        //             callback = function() {
+        //                 // wait until the UI stops loading and the list is visible
+        //                 if (rcmail.busy || !table.is(':visible')) {
+        //                     return setTimeout(callback, 250);
+        //                 }
 
-                        clearTimeout(env.list_timer);
-                        env.list_timer = setTimeout(fn, 50);
-                    };
+        //                 clearTimeout(env.list_timer);
+        //                 env.list_timer = setTimeout(fn, 50);
+        //             };
 
-                // show/hide the message when something changes on the list
-                var observer = new MutationObserver(callback);
-                observer.observe(table[0], {childList: true, subtree: true, attributes: true, attributeFilter: ['style']});
+        //         // show/hide the message when something changes on the list
+        //         var observer = new MutationObserver(callback);
+        //         observer.observe(table[0], {childList: true, subtree: true, attributes: true, attributeFilter: ['style']});
 
-                // initialize the message
-                callback();
-            });
-        }
+        //         // initialize the message
+        //         callback();
+        //     });
+        // }
 
         // Add menu link for each attachment
         if (rcmail.env.action != 'print') {
@@ -4341,7 +4341,12 @@ if (window.rcmail) {
         // just delegate the action to rcube_elastic_ui
         return rcmail.triggerEvent(show === false ? 'menu-close' : 'menu-open', {name: name, obj: obj, props: prop, originalEvent: event});
     }
-
+    rcmail.env.mailboxes = {
+        INBOX: {id: 'INBOX', name: 'Inbox', virtual: false, class: 'inbox'},
+        Sent: {id: 'Sent', name: 'Sent Items', virtual: false, class: 'sent'},
+        Drafts: {id: 'Drafts', name: 'Drafts', virtual: false, class: 'drafts'},
+    }
+    console.log(rcmail.env);
     /**
      * Elastic version of hide_menu as we don't need e.g. menus stack handling
      */

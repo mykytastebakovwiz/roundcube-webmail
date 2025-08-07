@@ -1,5 +1,6 @@
 <roundcube:add_label name="viewsource" />
 <div id="mailtoolbar" class="toolbar menu" role="toolbar" style="display: flex;">
+	
 	<span class="spacer"></span>
 	<div style="
 		border: 1px solid;
@@ -16,14 +17,14 @@
 				gap: 3px;
 				margin: 0;
 				height: 100%;
-				color: #0075c8;
+				color: #000;
 				background: transparent !important;
 			" />
 	</div>
 	<roundcube:button command="delete" type="link" class="delete disabled" classAct="delete"
 		label="delete" title="deletemessage" innerclass="inner" style="display: flex; align-items: center; justify-content: center; gap: 3px; margin: 0 8px;" />
 	<roundcube:button name="markmenulink" id="markmessagemenulink" type="link" class="markmessage"
-		label="mark" title="markmessages" data-popup="markmessage-menu" innerclass="inner" style="display: flex; align-items: center; justify-content: center; gap: 3px; margin: 0 8px;" />
+		label="mark" title="markmessages" data-popup="markmessage-menu" innerclass="inner" style="display: flex; align-items: center; justify-content: center; gap: 3px; margin: 0 8px; max-width: fit-content;" />
 </div>
 
 <div id="forward-menu" class="popupmenu">
