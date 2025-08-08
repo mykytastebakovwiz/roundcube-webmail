@@ -5,25 +5,17 @@
 </h1>
 
 <!-- folders list -->
-<div id="layout-sidebar" class="listbox" role="navigation" aria-labelledby="aria-label-folderlist">
+<div id="layout-sidebar" class="listbox" role="navigation" aria-labelledby="aria-label-folderlist" style="min-width: 350px;">
 	<div class="header">
-		<div style="
-			display: flex;
-			padding: 0 !important;
-			width: 100%;
-		">
-			<roundcube:include file="includes/mail-menu.html" />
-		</div>
 	</div>
 
 	<h2 id="aria-label-folderlist" class="voice">
 		<roundcube:label name="arialabelfolderlist" />
 	</h2>
 	<div id="folderlist-content" class="scroller">
-
-		<!-- <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #4d6066;">
+		<div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #4d6066; background-color: white;">
 			<roundcube:include file="includes/mail-menu.html" />
-		</div> -->
+		</div>
 		<roundcube:object name="mailboxlist" id="mailboxlist" class="treelist listing folderlist" folder_filter="mail"
 			unreadwrap="%s" />
 	</div>
